@@ -22,6 +22,7 @@ function pauseTimerCountdown() {
 
 function startNextTurn ()
 {
+	var wasAPickupPlaced = currentPlayerHasPlacedPickup;
 	kingHasBeenMovedThisTurn = false;
 	currentPlayerHasPlacedPickup = false;
 	whiteTurn = !whiteTurn;
@@ -41,9 +42,12 @@ function startNextTurn ()
 	for(var j = 0; j < pickupIndexThatWasPlaced; j++) {
 		pickups[j].moveDown = true;		
 	}
+	if(wasAPickupPlaced == true) {
 		var newPickup = nextPickup;
 		nextPickup = new gridSpacesToPlace(175, 570, scaling);
 		newPickup.x = 625;	
 		newPickup.y = 125;
 		pickups.unshift(newPickup);
+	}
+
 }

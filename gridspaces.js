@@ -87,8 +87,8 @@ function gridSpace(x, y, s) {
 			var curPosY = (Math.floor(mouseY/scaling));	
 			//Följande loop går igenom alla omkringliggande värden på brädet och gör "Desert" utav dessa:
 			for(var i = 0; i < allGridSpaces.length; i++) {
-				if(allGridSpaces[i].tableX == curPosX-1 || allGridSpaces[i].tableX == curPosX || allGridSpaces[i].tableX == curPosX+1) {
-					if(allGridSpaces[i].tableY == curPosY-1 || allGridSpaces[i].tableY == curPosY+1 || (allGridSpaces[i].tableX != curPosX && allGridSpaces[i].tableY == curPosY)) {
+				if(allGridSpaces[i].tableX == this.tableX-1 || allGridSpaces[i].tableX == this.tableX || allGridSpaces[i].tableX == this.tableX+1) {
+					if(allGridSpaces[i].tableY == this.tableY-1 || allGridSpaces[i].tableY == this.tableY+1 || (allGridSpaces[i].tableX != this.tableX && allGridSpaces[i].tableY == this.tableY)) {
 						allGridSpaces[i].color = this.color;
 						allGridSpaces[i].terrain = this.terrain;
 						if(allGridSpaces[i].building == "Mine") {
@@ -180,7 +180,7 @@ function gridSpacesToPlace(x, y, s) {  //Dessa innehåller enbart information om
 	this.y = y; 			
 	this.size = s;
 	this.terrain = seedTable[Math.floor(random(seedTable.length))];
-	this.card = deck[Math.floor(random(seedTable.length))];
+	this.card = deck[Math.floor(random(deck.length))];
 	this.color = [0,0,0];
 	this.building = 0;
 	this.team;
@@ -190,29 +190,26 @@ function gridSpacesToPlace(x, y, s) {  //Dessa innehåller enbart information om
 	this.moveDown = false;
 	this.moveDownTarget = null;
 
-	switch(this.terrain){  //LÄGG IN ATT "KORTEN" BESTÄMS FRÅN DECK ISTÄLLET FÖR RANDOM TERRAIN
-		case "Forest": 
+	switch(this.card){  
+		case "LumbermillCard": 
 			this.color = [50,200,0];
 			this.building = "Lumbermill";
 			this.cost = 1;
+			this.terrain = "Forest";
 			this.terrainRestriction = "Forest";
 			break;
-		case "Plains":
-			this.color = [75, 255, 75];
-			break;
-		case "Desert": 
+		case "PyramidCard": 
 			this.color = [240, 220, 0];
 			this.building = "Pyramid";
 			this.cost = 4;
+			this.terrain = "Desert";
 			this.terrainRestriction = "Desert";
 			break;
-		case "Sea": 
-			this.color = [0,0,255];
-			break;
-		case "Mountain":
+		case "MineCard":
 			this.color = [125, 125, 125];
 			this.building = "Mine";
 			this.cost = 3;
+			this.terrain = "Mountain";
 			this.terrainRestriction = "Mountain";
 			break;	
 	}

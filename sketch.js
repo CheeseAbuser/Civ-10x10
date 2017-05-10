@@ -233,13 +233,15 @@ function draw() {
 	rect(610, 335, 80, 80);
 	rect(610, 410, 80, 80);
 */
-	if(currentPlayerHasPlacedPickup == true)
-	{
-		if(!mouseIsPressed)
+	//if(currentPlayerHasPlacedPickup == true)
+	//{
+		if(mouseIsPressed && mouseX > 600 && mouseX < 700 && mouseY > 600 && mouseY < 650)
+			image(imgEndTurnButton, 600, 605, 100, 50);	
+		else			
 			image(imgEndTurnButton, 600, 600, 100, 50);
-		else
-			image(imgEndTurnButton, 600, 605, 100, 50);		
-	}
+		
+
+	//}
 
 	playPopupAnimations();
 

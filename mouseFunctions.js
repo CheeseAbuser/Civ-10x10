@@ -1,9 +1,14 @@
 function mouseClicked() {
 	if(mouseX > 600 && mouseX < 700 && mouseY > 600 && mouseY < 650) {
 		//startEndingTurn = true;
-		if(currentPlayerHasPlacedPickup == true) {
-			startNextTurn();			
-		}
+		if(currentPlayerHasPlacedPickup == false) 
+			//Om en spelare struntar i att sätta ut en byggnad så får denna 2 guld:
+			getBonusGold();
+
+			//Ej längre ett krav att ha placerat ut en byggnad för att avsluta turen:
+		//if(currentPlayerHasPlacedPickup == true) {
+		startNextTurn();			
+		//}
 	}
 }
 
@@ -181,4 +186,18 @@ function payCost(baseCost) {
 		blackGold = blackGold - totalCost;
 		print("Black pays " + totalCost + " gold");					
 	}
+}
+
+function getBonusGold() {
+	if(whiteTurn) {
+		whiteGold +=2;
+		addPopupAnimation (whiteKingX*scaling, whiteKingY*scaling, "+" + 2 , 80, "Gold", "White");
+		print("White player gets 2 gold due to not placing a tile this turn.");
+	}
+	else {
+		blackGold +=2;
+		addPopupAnimation (blackKingX*scaling, blackKingY*scaling, "+" + 2 , 80, "Gold", "Black");
+		print("Black player gets 2 gold due to not placing a tile this turn.");
+
+	}	
 }

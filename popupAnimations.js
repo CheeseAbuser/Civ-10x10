@@ -14,7 +14,7 @@ function playPopupAnimations () {
 	if(storedPopupAnimations.length > 0) {
 		for(var i = 0; i < storedPopupAnimations.length; i++) {
 			if(storedPopupAnimations[i][3] > 0) {
-				storedPopupAnimations[i][3] -= 1;
+				storedPopupAnimations[i][3] -= 0.5;
 				if(storedPopupAnimations[i][5] != "Text") {
 					fill(storedPopupAnimations[i][4]);
 					ellipse(storedPopupAnimations[i][0]-5, storedPopupAnimations[i][1]-30 + storedPopupAnimations[i][3]/4, popupAnimationSize, popupAnimationSize);	
